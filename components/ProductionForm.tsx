@@ -114,8 +114,8 @@ export default function ProductionForm({
   }
 
   return (
-    <section className="rounded-lg border border-corporate-line bg-white p-5 shadow-board">
-      <div className="mb-5 flex items-start justify-between gap-4 border-b border-corporate-line pb-4">
+    <section className="min-w-0 max-w-full rounded-lg border border-corporate-line bg-white p-4 shadow-board sm:p-5">
+      <div className="mb-5 flex flex-col gap-4 border-b border-corporate-line pb-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <div className="flex items-center gap-2 text-sm font-bold text-corporate-blue">
             <Boxes size={18} aria-hidden="true" />
@@ -146,7 +146,7 @@ export default function ProductionForm({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         {fields.slice(0, 2).map((field) => (
           <Field
             key={field.name}
@@ -174,12 +174,12 @@ export default function ProductionForm({
         </div>
       ) : null}
 
-      <div className="mt-5 grid grid-cols-[1fr_1.35fr] gap-3">
+      <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1.35fr]">
         <button
           type="button"
           onPointerDown={onLoadSample}
           onClick={onLoadSample}
-          className="inline-flex items-center justify-center gap-2 rounded-lg border border-corporate-blue bg-white px-4 py-3 text-sm font-extrabold text-corporate-blue transition hover:bg-blue-50"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-corporate-blue bg-white px-4 py-3 text-sm font-extrabold text-corporate-blue transition hover:bg-blue-50"
         >
           <Database size={17} aria-hidden="true" />
           예시 데이터 불러오기
@@ -188,7 +188,7 @@ export default function ProductionForm({
           type="button"
           onClick={onSubmit}
           disabled={loading}
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-corporate-navy px-4 py-3 text-sm font-extrabold text-white transition hover:bg-corporate-blue disabled:bg-slate-300"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-corporate-navy px-4 py-3 text-sm font-extrabold text-white transition hover:bg-corporate-blue disabled:bg-slate-300"
         >
           {loading ? <span className="spinner" aria-hidden="true" /> : <Sparkles size={18} aria-hidden="true" />}
           {loading ? "생성 중..." : "AI 요약 생성"}
@@ -210,10 +210,10 @@ function Field({
   onChange,
 }: FieldProps) {
   const sharedClassName =
-    "mt-2 w-full rounded-lg border border-corporate-line bg-white px-3 py-2.5 text-sm leading-6 text-corporate-ink outline-none transition placeholder:text-slate-400 focus:border-corporate-blue focus:ring-4 focus:ring-blue-100";
+    "mt-2 w-full min-w-0 max-w-full rounded-lg border border-corporate-line bg-white px-3 py-2.5 text-sm leading-6 text-corporate-ink outline-none transition placeholder:text-slate-400 focus:border-corporate-blue focus:ring-4 focus:ring-blue-100";
 
   return (
-    <label className="block" htmlFor={name}>
+    <label className="block min-w-0" htmlFor={name}>
       <span className="flex items-center gap-2 text-sm font-extrabold text-corporate-ink">
         <Icon size={16} className="text-corporate-blue" aria-hidden="true" />
         {label}

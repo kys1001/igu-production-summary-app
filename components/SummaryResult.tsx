@@ -44,12 +44,12 @@ export default function SummaryResult({
 }: SummaryResultProps) {
   if (!result) {
     return (
-      <section className="flex min-h-[760px] items-center justify-center rounded-lg border border-dashed border-corporate-line bg-white p-8">
+      <section className="flex min-h-[360px] items-center justify-center rounded-lg border border-dashed border-corporate-line bg-white p-5 sm:min-h-[760px] sm:p-8">
         <div className="max-w-md text-center">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-lg bg-corporate-steel text-corporate-blue">
             <FileText size={30} aria-hidden="true" />
           </div>
-          <h2 className="mt-5 text-2xl font-black text-corporate-ink">
+          <h2 className="mt-5 text-xl font-black text-corporate-ink sm:text-2xl">
             생산일보를 입력하면 AI가 회의자료 초안을 생성합니다.
           </h2>
           <p className="mt-3 text-sm leading-6 text-corporate-muted">
@@ -61,8 +61,8 @@ export default function SummaryResult({
   }
 
   return (
-    <section className="space-y-4">
-      <div className="flex items-center justify-between gap-4 rounded-lg border border-corporate-line bg-white px-5 py-4 shadow-board">
+    <section className="min-w-0 space-y-4">
+      <div className="flex flex-col gap-4 rounded-lg border border-corporate-line bg-white px-4 py-4 shadow-board sm:px-5 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <p className="text-sm font-extrabold text-corporate-blue">
             AI 생성 결과
@@ -71,11 +71,11 @@ export default function SummaryResult({
             생산회의 자료 초안
           </h2>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2 lg:w-auto">
           <button
             type="button"
             onClick={onDownloadDoc}
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-corporate-navy px-4 py-2.5 text-sm font-extrabold text-white transition hover:bg-corporate-blue"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-corporate-navy px-4 py-2.5 text-sm font-extrabold text-white transition hover:bg-corporate-blue"
           >
             <FileDown size={17} aria-hidden="true" />
             DOCX 다운로드
@@ -83,7 +83,7 @@ export default function SummaryResult({
           <button
             type="button"
             onClick={onCopy}
-            className="inline-flex items-center justify-center gap-2 rounded-lg border border-corporate-blue bg-white px-4 py-2.5 text-sm font-extrabold text-corporate-blue transition hover:bg-blue-50"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-corporate-blue bg-white px-4 py-2.5 text-sm font-extrabold text-corporate-blue transition hover:bg-blue-50"
           >
             <ClipboardCopy size={17} aria-hidden="true" />
             {copied ? "복사 완료" : "전체 결과 복사"}
@@ -91,7 +91,7 @@ export default function SummaryResult({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <Card icon={Factory} title="1. 생산 현황 요약">
           <p className="whitespace-pre-line text-sm leading-7 text-corporate-ink">
             {result.productionSummary}
@@ -99,7 +99,7 @@ export default function SummaryResult({
         </Card>
 
         <Card icon={AlertCircle} title="2. 주요 이슈" accent="amber">
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {Object.entries(result.keyIssues).map(([key, items]) => (
               <IssueGroup
                 key={key}
@@ -139,8 +139,8 @@ export default function SummaryResult({
       </div>
 
       <Card icon={TableProperties} title="5. 부서별 확인사항">
-        <div className="overflow-hidden rounded-lg border border-corporate-line">
-          <table className="w-full border-collapse text-left text-sm">
+        <div className="overflow-x-auto rounded-lg border border-corporate-line">
+          <table className="w-full min-w-[560px] border-collapse text-left text-sm">
             <thead className="bg-corporate-navy text-white">
               <tr>
                 <th className="w-36 px-4 py-3 font-extrabold">부서</th>
@@ -163,7 +163,7 @@ export default function SummaryResult({
         </div>
       </Card>
 
-      <div className="grid grid-cols-[1fr_1.15fr] gap-4">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1fr_1.15fr]">
         <Card icon={ListChecks} title="6. 생산회의 안건" accent="amber">
           <ol className="space-y-2 text-sm leading-6 text-corporate-ink">
             {result.meetingAgenda.map((item, index) => (
@@ -195,12 +195,12 @@ function Card({ icon: Icon, title, children, accent = "blue" }: CardProps) {
   };
 
   return (
-    <article className="rounded-lg border border-corporate-line bg-white p-5 shadow-board">
+    <article className="min-w-0 rounded-lg border border-corporate-line bg-white p-4 shadow-board sm:p-5">
       <div className="mb-4 flex items-center gap-2">
         <span className={`flex h-9 w-9 items-center justify-center rounded-lg ${accents[accent]}`}>
           <Icon size={19} aria-hidden="true" />
         </span>
-        <h3 className="text-base font-black text-corporate-ink">{title}</h3>
+        <h3 className="min-w-0 text-base font-black text-corporate-ink">{title}</h3>
       </div>
       {children}
     </article>

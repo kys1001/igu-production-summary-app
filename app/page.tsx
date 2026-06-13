@@ -139,26 +139,26 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f5f8fc] px-6 py-6">
+    <main className="min-h-screen bg-[#f5f8fc] px-4 py-4 sm:px-6 sm:py-6">
       <div className="mx-auto max-w-[1500px]">
         <section className="mb-5 overflow-hidden rounded-lg border border-corporate-line bg-white shadow-board">
-          <div className="p-8">
+          <div className="p-5 sm:p-8">
             <div className="flex items-center gap-3 text-sm font-black text-corporate-blue">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-corporate-navy text-white">
                 <Factory size={19} aria-hidden="true" />
               </span>
               IGU INDUSTRIAL DAILY REPORT
             </div>
-            <h1 className="mt-5 text-4xl font-black tracking-normal text-corporate-ink">
+            <h1 className="mt-5 text-2xl font-black tracking-normal text-corporate-ink sm:text-4xl">
               이구산업 생산일보 요약 자동화
             </h1>
-            <p className="mt-4 max-w-3xl text-lg font-medium leading-8 text-corporate-muted">
+            <p className="mt-4 max-w-3xl text-base font-medium leading-7 text-corporate-muted sm:text-lg sm:leading-8">
               생산 메모와 일일 실적을 입력하면 회의자료와 핵심 이슈를 자동 정리합니다.
             </p>
           </div>
         </section>
 
-        <div className="grid grid-cols-[540px_minmax(0,1fr)] gap-5">
+        <div className="grid min-w-0 gap-5 xl:grid-cols-[540px_minmax(0,1fr)]">
           <ProductionForm
             value={input}
             error={error}
