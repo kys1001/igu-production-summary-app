@@ -13,7 +13,7 @@ import {
   TextRun,
   WidthType,
 } from "docx";
-import { ClipboardCheck, Factory, FileBarChart2, Shield } from "lucide-react";
+import { Factory } from "lucide-react";
 import ProductionForm from "@/components/ProductionForm";
 import SummaryResult from "@/components/SummaryResult";
 import { emptyProductionInput, sampleProductionInput } from "@/lib/sampleData";
@@ -142,26 +142,19 @@ export default function Home() {
     <main className="min-h-screen bg-[#f5f8fc] px-6 py-6">
       <div className="mx-auto max-w-[1500px]">
         <section className="mb-5 overflow-hidden rounded-lg border border-corporate-line bg-white shadow-board">
-          <div className="grid grid-cols-[1.2fr_0.8fr]">
-            <div className="p-8">
-              <div className="flex items-center gap-3 text-sm font-black text-corporate-blue">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-corporate-navy text-white">
-                  <Factory size={19} aria-hidden="true" />
-                </span>
-                IGU INDUSTRIAL DAILY REPORT
-              </div>
-              <h1 className="mt-5 text-4xl font-black tracking-normal text-corporate-ink">
-                이구산업 생산일보 요약 자동화
-              </h1>
-              <p className="mt-4 max-w-3xl text-lg font-medium leading-8 text-corporate-muted">
-                생산 메모와 일일 실적을 입력하면 회의자료와 핵심 이슈를 자동 정리합니다.
-              </p>
+          <div className="p-8">
+            <div className="flex items-center gap-3 text-sm font-black text-corporate-blue">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-corporate-navy text-white">
+                <Factory size={19} aria-hidden="true" />
+              </span>
+              IGU INDUSTRIAL DAILY REPORT
             </div>
-            <div className="grid grid-cols-3 border-l border-corporate-line bg-corporate-navy text-white">
-              <HeroStat icon={FileBarChart2} label="요약" value="7종" />
-              <HeroStat icon={ClipboardCheck} label="회의" value="안건" />
-              <HeroStat icon={Shield} label="API" value="Gemini" />
-            </div>
+            <h1 className="mt-5 text-4xl font-black tracking-normal text-corporate-ink">
+              이구산업 생산일보 요약 자동화
+            </h1>
+            <p className="mt-4 max-w-3xl text-lg font-medium leading-8 text-corporate-muted">
+              생산 메모와 일일 실적을 입력하면 회의자료와 핵심 이슈를 자동 정리합니다.
+            </p>
           </div>
         </section>
 
@@ -188,24 +181,6 @@ export default function Home() {
         </p>
       </div>
     </main>
-  );
-}
-
-function HeroStat({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: typeof FileBarChart2;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="flex flex-col justify-center border-r border-white/15 px-5 last:border-r-0">
-      <Icon size={24} className="text-corporate-amber" aria-hidden="true" />
-      <span className="mt-4 text-3xl font-black">{value}</span>
-      <span className="mt-1 text-sm font-bold text-blue-100">{label}</span>
-    </div>
   );
 }
 
