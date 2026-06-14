@@ -16,7 +16,7 @@ import {
 import { Factory } from "lucide-react";
 import ProductionForm from "@/components/ProductionForm";
 import SummaryResult from "@/components/SummaryResult";
-import { emptyProductionInput, sampleProductionInput } from "@/lib/sampleData";
+import { emptyProductionInput, sampleProductionScenarios } from "@/lib/sampleData";
 import type { ApiErrorResponse, ProductionInput, SummaryResponse } from "@/lib/types";
 
 export default function Home() {
@@ -131,8 +131,8 @@ export default function Home() {
     setCopied(false);
   }
 
-  function loadSample() {
-    setInput({ ...sampleProductionInput });
+  function loadSample(sample: ProductionInput) {
+    setInput({ ...sample });
     setResult(null);
     setError("");
     setCopied(false);
@@ -163,6 +163,7 @@ export default function Home() {
             value={input}
             error={error}
             loading={loading}
+            samples={sampleProductionScenarios}
             onChange={setInput}
             onLoadSample={loadSample}
             onReset={resetAll}

@@ -15,14 +15,15 @@ import {
   Wrench,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import type { ProductionInput } from "@/lib/types";
+import type { ProductionInput, ProductionSample } from "@/lib/types";
 
 type ProductionFormProps = {
   value: ProductionInput;
   error: string;
   loading: boolean;
+  samples: ProductionSample[];
   onChange: (nextValue: ProductionInput) => void;
-  onLoadSample: () => void;
+  onLoadSample: (sample: ProductionInput) => void;
   onReset: () => void;
   onSubmit: () => void;
 };
@@ -104,6 +105,7 @@ export default function ProductionForm({
   value,
   error,
   loading,
+  samples,
   onChange,
   onLoadSample,
   onReset,
@@ -125,24 +127,37 @@ export default function ProductionForm({
             일일 생산 메모
           </h2>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onPointerDown={onLoadSample}
-            onClick={onLoadSample}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-corporate-blue bg-blue-50 px-3 text-sm font-extrabold text-corporate-blue transition hover:bg-blue-100"
-          >
-            <Database size={16} aria-hidden="true" />
-            예시
-          </button>
-          <button
-            type="button"
-            onClick={onReset}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-corporate-line text-corporate-muted transition hover:border-corporate-blue hover:text-corporate-blue"
-            title="초기화"
-          >
-            <RotateCcw size={18} aria-hidden="true" />
-          </button>
+        <button
+          type="button"
+          onClick={onReset}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-corporate-line text-corporate-muted transition hover:border-corporate-blue hover:text-corporate-blue"
+          title="초기화"
+        >
+          <RotateCcw size={18} aria-hidden="true" />
+        </button>
+      </div>
+
+      <div className="mb-5 rounded-lg border border-corporate-line bg-slate-50 p-3">
+        <p className="mb-3 flex items-center gap-2 text-sm font-extrabold text-corporate-blue">
+          <Database size={16} aria-hidden="true" />
+          예시 데이터
+        </p>
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+          {samples.map((sample) => (
+            <button
+              key={sample.id}
+              type="button"
+              onClick={() => onLoadSample(sample.data)}
+              className="min-h-16 rounded-lg border border-corporate-line bg-white px-3 py-2 text-left transition hover:border-corporate-blue hover:bg-blue-50 focus:border-corporate-blue focus:outline-none focus:ring-4 focus:ring-blue-100"
+            >
+              <span className="block text-sm font-black text-corporate-ink">
+                {sample.label}
+              </span>
+              <span className="mt-1 block text-xs font-semibold leading-5 text-corporate-muted">
+                {sample.description}
+              </span>
+            </button>
+          ))}
         </div>
       </div>
 
@@ -174,21 +189,12 @@ export default function ProductionForm({
         </div>
       ) : null}
 
-      <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1.35fr]">
-        <button
-          type="button"
-          onPointerDown={onLoadSample}
-          onClick={onLoadSample}
-          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-corporate-blue bg-white px-4 py-3 text-sm font-extrabold text-corporate-blue transition hover:bg-blue-50"
-        >
-          <Database size={17} aria-hidden="true" />
-          예시 데이터 불러오기
-        </button>
+      <div className="mt-5">
         <button
           type="button"
           onClick={onSubmit}
           disabled={loading}
-          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-corporate-navy px-4 py-3 text-sm font-extrabold text-white transition hover:bg-corporate-blue disabled:bg-slate-300"
+          className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-corporate-navy px-4 py-3 text-sm font-extrabold text-white transition hover:bg-corporate-blue disabled:bg-slate-300"
         >
           {loading ? <span className="spinner" aria-hidden="true" /> : <Sparkles size={18} aria-hidden="true" />}
           {loading ? "생성 중..." : "AI 요약 생성"}

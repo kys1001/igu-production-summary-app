@@ -9,6 +9,13 @@ export type ProductionInput = {
   memo: string;
 };
 
+export type ProductionSample = {
+  id: string;
+  label: string;
+  description: string;
+  data: ProductionInput;
+};
+
 export type KeyIssues = {
   equipment: string[];
   quality: string[];
