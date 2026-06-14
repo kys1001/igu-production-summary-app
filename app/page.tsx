@@ -139,17 +139,17 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f5f8fc] px-4 py-4 sm:px-6 sm:py-6">
+    <main className="min-h-screen bg-transparent px-4 py-4 text-corporate-ink sm:px-6 sm:py-6">
       <div className="mx-auto max-w-[1500px]">
-        <section className="mb-5 overflow-hidden rounded-lg border border-corporate-line bg-white shadow-board">
-          <div className="p-5 sm:p-8">
-            <div className="flex items-center gap-3 text-sm font-black text-corporate-blue">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-corporate-navy text-white">
+        <section className="mb-5 overflow-hidden rounded-lg border border-white/70 bg-white/75 shadow-board backdrop-blur-xl">
+          <div className="border-b border-white/80 bg-white/45 px-5 py-5 sm:px-8 sm:py-7">
+            <div className="flex items-center gap-3 text-xs font-bold uppercase text-corporate-blue">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-corporate-ink text-white shadow-sm">
                 <Factory size={19} aria-hidden="true" />
               </span>
               IGU INDUSTRIAL DAILY REPORT
             </div>
-            <h1 className="mt-5 text-2xl font-black tracking-normal text-corporate-ink sm:text-4xl">
+            <h1 className="mt-5 text-3xl font-semibold tracking-normal text-corporate-ink sm:text-5xl">
               이구산업 생산일보 요약 자동화
             </h1>
             <p className="mt-4 max-w-3xl text-base font-medium leading-7 text-corporate-muted sm:text-lg sm:leading-8">
@@ -177,7 +177,7 @@ export default function Home() {
           />
         </div>
 
-        <p className="mt-5 text-center text-xs font-semibold text-corporate-muted">
+        <p className="mt-5 text-center text-xs font-medium text-corporate-muted">
           실제 운영 시 고객사명, 원가, 계약조건, 도면 등 민감정보는 사내 보안 기준에 따라 입력 여부를 판단해야 합니다.
         </p>
       </div>

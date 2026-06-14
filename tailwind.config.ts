@@ -10,18 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         corporate: {
-          navy: "#0B2F5B",
-          blue: "#124C8C",
-          steel: "#E8EEF5",
-          line: "#D8E2EE",
-          ink: "#142033",
-          muted: "#607089",
-          amber: "#F2B84B",
-          green: "#2D8A68",
+          navy: "#1D1D1F",
+          blue: "#0071E3",
+          steel: "#F5F5F7",
+          line: "#D2D2D7",
+          ink: "#1D1D1F",
+          muted: "#6E6E73",
+          amber: "#BF5B00",
+          green: "#248A3D",
         },
       },
       boxShadow: {
-        board: "0 18px 45px rgba(11, 47, 91, 0.08)",
+        board: "0 20px 60px rgba(0, 0, 0, 0.08)",
       },
       fontFamily: {
         sans: [

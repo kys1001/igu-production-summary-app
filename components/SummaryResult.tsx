@@ -44,15 +44,15 @@ export default function SummaryResult({
 }: SummaryResultProps) {
   if (!result) {
     return (
-      <section className="flex min-h-[360px] items-center justify-center rounded-lg border border-dashed border-corporate-line bg-white p-5 sm:min-h-[760px] sm:p-8">
+      <section className="flex min-h-[360px] items-center justify-center rounded-lg border border-dashed border-corporate-line bg-white/65 p-5 shadow-board backdrop-blur-xl sm:min-h-[760px] sm:p-8">
         <div className="max-w-md text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-lg bg-corporate-steel text-corporate-blue">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-lg border border-white bg-corporate-steel text-corporate-blue shadow-sm">
             <FileText size={30} aria-hidden="true" />
           </div>
-          <h2 className="mt-5 text-xl font-black text-corporate-ink sm:text-2xl">
+          <h2 className="mt-5 text-xl font-semibold text-corporate-ink sm:text-2xl">
             생산일보를 입력하면 AI가 회의자료 초안을 생성합니다.
           </h2>
-          <p className="mt-3 text-sm leading-6 text-corporate-muted">
+          <p className="mt-3 text-sm font-medium leading-6 text-corporate-muted">
             생산 현황, 이슈, 납기 영향, 품질 확인사항, 부서별 액션을 한 화면에서 확인할 수 있습니다.
           </p>
         </div>
@@ -62,12 +62,12 @@ export default function SummaryResult({
 
   return (
     <section className="min-w-0 space-y-4">
-      <div className="flex flex-col gap-4 rounded-lg border border-corporate-line bg-white px-4 py-4 shadow-board sm:px-5 lg:flex-row lg:items-center lg:justify-between">
+      <div className="flex flex-col gap-4 rounded-lg border border-white/75 bg-white/80 px-4 py-4 shadow-board backdrop-blur-xl sm:px-5 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <p className="text-sm font-extrabold text-corporate-blue">
+          <p className="text-sm font-semibold text-corporate-blue">
             AI 생성 결과
           </p>
-          <h2 className="mt-1 text-xl font-black text-corporate-ink">
+          <h2 className="mt-1 text-xl font-semibold text-corporate-ink">
             생산회의 자료 초안
           </h2>
         </div>
@@ -75,7 +75,7 @@ export default function SummaryResult({
           <button
             type="button"
             onClick={onDownloadDoc}
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-corporate-navy px-4 py-2.5 text-sm font-extrabold text-white transition hover:bg-corporate-blue"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-corporate-blue px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#0077ed] focus:outline-none focus:ring-4 focus:ring-blue-100"
           >
             <FileDown size={17} aria-hidden="true" />
             DOCX 다운로드
@@ -83,7 +83,7 @@ export default function SummaryResult({
           <button
             type="button"
             onClick={onCopy}
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-corporate-blue bg-white px-4 py-2.5 text-sm font-extrabold text-corporate-blue transition hover:bg-blue-50"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-corporate-line bg-white/90 px-4 py-2.5 text-sm font-semibold text-corporate-blue shadow-sm transition hover:border-corporate-blue hover:bg-white focus:outline-none focus:ring-4 focus:ring-blue-100"
           >
             <ClipboardCopy size={17} aria-hidden="true" />
             {copied ? "복사 완료" : "전체 결과 복사"}
@@ -116,7 +116,7 @@ export default function SummaryResult({
           </p>
           <SubTitle>즉시 확인사항</SubTitle>
           <BulletList items={result.deliveryImpact.checkPoints} />
-          <div className="mt-3 rounded-lg border border-corporate-line bg-corporate-steel px-3 py-2 text-sm font-bold text-corporate-ink">
+          <div className="mt-3 rounded-lg border border-corporate-line bg-corporate-steel/80 px-3 py-2 text-sm font-semibold text-corporate-ink">
             고객 안내 필요 여부: {result.deliveryImpact.customerNoticeNeeded}
           </div>
         </Card>
@@ -139,18 +139,18 @@ export default function SummaryResult({
       </div>
 
       <Card icon={TableProperties} title="5. 부서별 확인사항">
-        <div className="overflow-x-auto rounded-lg border border-corporate-line">
+        <div className="overflow-x-auto rounded-lg border border-corporate-line bg-white">
           <table className="w-full min-w-[560px] border-collapse text-left text-sm">
-            <thead className="bg-corporate-navy text-white">
+            <thead className="bg-corporate-ink text-white">
               <tr>
-                <th className="w-36 px-4 py-3 font-extrabold">부서</th>
-                <th className="px-4 py-3 font-extrabold">확인사항</th>
+                <th className="w-36 px-4 py-3 font-semibold">부서</th>
+                <th className="px-4 py-3 font-semibold">확인사항</th>
               </tr>
             </thead>
             <tbody>
               {result.departmentActions.map((row) => (
                 <tr key={row.department} className="border-t border-corporate-line">
-                  <td className="bg-slate-50 px-4 py-3 font-extrabold text-corporate-blue">
+                  <td className="bg-corporate-steel px-4 py-3 font-semibold text-corporate-blue">
                     {row.department}
                   </td>
                   <td className="px-4 py-3">
@@ -168,7 +168,7 @@ export default function SummaryResult({
           <ol className="space-y-2 text-sm leading-6 text-corporate-ink">
             {result.meetingAgenda.map((item, index) => (
               <li key={`${item}-${index}`} className="flex gap-2">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-corporate-navy text-xs font-black text-white">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-corporate-ink text-xs font-semibold text-white">
                   {index + 1}
                 </span>
                 <span>{item}</span>
@@ -178,7 +178,7 @@ export default function SummaryResult({
         </Card>
 
         <Card icon={MessageSquareText} title="7. 부서장 보고용 요약문" accent="green">
-          <p className="whitespace-pre-line text-base font-semibold leading-8 text-corporate-ink">
+          <p className="whitespace-pre-line text-base font-medium leading-8 text-corporate-ink">
             {result.managerBrief}
           </p>
         </Card>
@@ -189,18 +189,18 @@ export default function SummaryResult({
 
 function Card({ icon: Icon, title, children, accent = "blue" }: CardProps) {
   const accents = {
-    blue: "bg-blue-50 text-corporate-blue",
-    green: "bg-emerald-50 text-corporate-green",
-    amber: "bg-amber-50 text-amber-700",
+    blue: "border-blue-100 bg-blue-50 text-corporate-blue",
+    green: "border-emerald-100 bg-emerald-50 text-corporate-green",
+    amber: "border-amber-100 bg-amber-50 text-corporate-amber",
   };
 
   return (
-    <article className="min-w-0 rounded-lg border border-corporate-line bg-white p-4 shadow-board sm:p-5">
+    <article className="min-w-0 rounded-lg border border-white/75 bg-white/80 p-4 shadow-board backdrop-blur-xl sm:p-5">
       <div className="mb-4 flex items-center gap-2">
-        <span className={`flex h-9 w-9 items-center justify-center rounded-lg ${accents[accent]}`}>
+        <span className={`flex h-9 w-9 items-center justify-center rounded-lg border ${accents[accent]}`}>
           <Icon size={19} aria-hidden="true" />
         </span>
-        <h3 className="min-w-0 text-base font-black text-corporate-ink">{title}</h3>
+        <h3 className="min-w-0 text-base font-semibold text-corporate-ink">{title}</h3>
       </div>
       {children}
     </article>
@@ -209,8 +209,8 @@ function Card({ icon: Icon, title, children, accent = "blue" }: CardProps) {
 
 function IssueGroup({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="rounded-lg border border-corporate-line bg-slate-50 p-3">
-      <p className="mb-2 text-sm font-black text-corporate-blue">{title}</p>
+    <div className="rounded-lg border border-corporate-line bg-corporate-steel/70 p-3">
+      <p className="mb-2 text-sm font-semibold text-corporate-blue">{title}</p>
       <BulletList items={items} compact />
     </div>
   );
@@ -227,7 +227,7 @@ function QualityBlock({ title, items }: { title: string; items: string[] }) {
 
 function SubTitle({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mt-4 text-sm font-black text-corporate-blue first:mt-0">
+    <p className="mt-4 text-sm font-semibold text-corporate-blue first:mt-0">
       {children}
     </p>
   );

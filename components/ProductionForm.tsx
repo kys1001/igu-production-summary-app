@@ -116,29 +116,29 @@ export default function ProductionForm({
   }
 
   return (
-    <section className="min-w-0 max-w-full rounded-lg border border-corporate-line bg-white p-4 shadow-board sm:p-5">
-      <div className="mb-5 flex flex-col gap-4 border-b border-corporate-line pb-4 sm:flex-row sm:items-start sm:justify-between">
+    <section className="min-w-0 max-w-full rounded-lg border border-white/75 bg-white/80 p-4 shadow-board backdrop-blur-xl sm:p-5">
+      <div className="mb-5 flex items-start justify-between gap-4 border-b border-corporate-line/70 pb-4">
         <div>
-          <div className="flex items-center gap-2 text-sm font-bold text-corporate-blue">
+          <div className="flex items-center gap-2 text-sm font-semibold text-corporate-blue">
             <Boxes size={18} aria-hidden="true" />
             생산일보 입력
           </div>
-          <h2 className="mt-2 text-xl font-black text-corporate-ink">
+          <h2 className="mt-2 text-xl font-semibold text-corporate-ink">
             일일 생산 메모
           </h2>
         </div>
         <button
           type="button"
           onClick={onReset}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-corporate-line text-corporate-muted transition hover:border-corporate-blue hover:text-corporate-blue"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-corporate-line bg-white/80 text-corporate-muted shadow-sm transition hover:border-corporate-blue hover:text-corporate-blue focus:outline-none focus:ring-4 focus:ring-blue-100"
           title="초기화"
         >
           <RotateCcw size={18} aria-hidden="true" />
         </button>
       </div>
 
-      <div className="mb-5 rounded-lg border border-corporate-line bg-slate-50 p-3">
-        <p className="mb-3 flex items-center gap-2 text-sm font-extrabold text-corporate-blue">
+      <div className="mb-5 rounded-lg border border-corporate-line/80 bg-corporate-steel/80 p-3">
+        <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-corporate-blue">
           <Database size={16} aria-hidden="true" />
           예시 데이터
         </p>
@@ -148,12 +148,12 @@ export default function ProductionForm({
               key={sample.id}
               type="button"
               onClick={() => onLoadSample(sample.data)}
-              className="min-h-16 rounded-lg border border-corporate-line bg-white px-3 py-2 text-left transition hover:border-corporate-blue hover:bg-blue-50 focus:border-corporate-blue focus:outline-none focus:ring-4 focus:ring-blue-100"
+              className="min-h-16 rounded-lg border border-white bg-white/95 px-3 py-2 text-left shadow-sm transition hover:border-corporate-blue hover:bg-white focus:border-corporate-blue focus:outline-none focus:ring-4 focus:ring-blue-100"
             >
-              <span className="block text-sm font-black text-corporate-ink">
+              <span className="block text-sm font-semibold text-corporate-ink">
                 {sample.label}
               </span>
-              <span className="mt-1 block text-xs font-semibold leading-5 text-corporate-muted">
+              <span className="mt-1 block text-xs font-medium leading-5 text-corporate-muted">
                 {sample.description}
               </span>
             </button>
@@ -184,7 +184,7 @@ export default function ProductionForm({
       </div>
 
       {error ? (
-        <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+        <div className="mt-4 rounded-lg border border-red-200 bg-red-50/90 px-4 py-3 text-sm font-semibold text-red-700">
           {error}
         </div>
       ) : null}
@@ -194,7 +194,7 @@ export default function ProductionForm({
           type="button"
           onClick={onSubmit}
           disabled={loading}
-          className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-corporate-navy px-4 py-3 text-sm font-extrabold text-white transition hover:bg-corporate-blue disabled:bg-slate-300"
+          className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-corporate-blue px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#0077ed] focus:outline-none focus:ring-4 focus:ring-blue-100 disabled:bg-slate-300"
         >
           {loading ? <span className="spinner" aria-hidden="true" /> : <Sparkles size={18} aria-hidden="true" />}
           {loading ? "생성 중..." : "AI 요약 생성"}
@@ -216,11 +216,11 @@ function Field({
   onChange,
 }: FieldProps) {
   const sharedClassName =
-    "mt-2 w-full min-w-0 max-w-full rounded-lg border border-corporate-line bg-white px-3 py-2.5 text-sm leading-6 text-corporate-ink outline-none transition placeholder:text-slate-400 focus:border-corporate-blue focus:ring-4 focus:ring-blue-100";
+    "mt-2 w-full min-w-0 max-w-full rounded-lg border border-corporate-line/80 bg-white/90 px-3 py-2.5 text-sm leading-6 text-corporate-ink shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-corporate-blue focus:bg-white focus:ring-4 focus:ring-blue-100";
 
   return (
     <label className="block min-w-0" htmlFor={name}>
-      <span className="flex items-center gap-2 text-sm font-extrabold text-corporate-ink">
+      <span className="flex items-center gap-2 text-sm font-semibold text-corporate-ink">
         <Icon size={16} className="text-corporate-blue" aria-hidden="true" />
         {label}
         {required ? <span className="text-red-500">*</span> : null}
